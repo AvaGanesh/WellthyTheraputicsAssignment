@@ -1,1 +1,60 @@
-<p>home works!</p>
+<div
+  class="container"
+  fxLayout="row"
+  fxLayout.xs="column"
+  fxFlexFill
+  fxLayoutAlign="center center"
+>
+  <mat-card>
+    <form [formGroup]="mailerForm" (ngSubmit)="onSubmit()">
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>User name *</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="userName"
+          placeholder="test_32221"
+        />
+        <mat-hint>
+          User name should be minimum 6 and can contain only _ and alpha numeric
+          characters.
+        </mat-hint>
+        <mat-icon matSuffix>person</mat-icon>
+        <mat-error *ngIf="getUserNameError()">
+          {{ getUserNameError() }}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field
+        class="example-full-width"
+        style="margin-top: 20px"
+        appearance="outline"
+      >
+        <mat-label>Mobile *</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="mobileNumber"
+          placeholder="987xxxx987"
+        />
+        <mat-icon matSuffix>smartphone</mat-icon>
+        <mat-error *ngIf="getMobileNumberError()">
+          {{ getMobileNumberError() }}
+        </mat-error>
+      </mat-form-field>
+
+      <div fxLayout="row" fxLayoutAlign="end">
+        <a
+          type="submit"
+          [href]="getMailText()"
+          mat-raised-button
+          color="primary"
+          [disabled]="mailerForm.invalid"
+          (click)="onSubmit()"
+        >
+          Send
+        </a>
+      </div>
+    </form>
+  </mat-card>
+</div>
+

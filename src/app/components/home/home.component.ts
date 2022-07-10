@@ -5,7 +5,10 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { faAppStore, faGooglePlay } from '@fortawesome/free-brands-svg-icons';
+import { faCoffee, faMobile, faUser } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-home',
@@ -13,9 +16,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
+  faGooglePlay = faGooglePlay;
+  faAppStore = faAppStore;
+  faMobile = faMobile;
+  faUser = faUser;
+
   mailerForm!: FormGroup;
   // mailText: string;
-  constructor(private fb: FormBuilder, private router: Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private snackBar: MatSnackBar,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.mailerForm = this.fb.group({
@@ -23,12 +35,17 @@ export class HomeComponent implements OnInit {
         null,
         [
           Validators.required,
-          Validators.pattern(new RegExp(/^[a-zA-Z0-9\_]\w{5,30}$/)),
+          Validators.pattern(new RegExp(/^([a-zA-Z])[a-zA-Z0-9\_]\w{5,30}$/)),
+          // Regex for userName with alpha numeric along with _ length ranging from 5 to 30
         ],
       ],
       mobileNumber: [
         null,
-        [Validators.required, Validators.pattern(new RegExp('[0-9]{10}'))],
+        [
+          Validators.required,
+          Validators.pattern(new RegExp(/^[6-9]{1}[0-9]{9}$/)),
+          // Regex for mobile numbers starting with 6 to 9 and total 10 digits
+        ],
       ],
     });
   }
@@ -58,6 +75,10 @@ export class HomeComponent implements OnInit {
   }
 
   onSubmit() {
+    this.snackBar.open('User details submitted successfully!', undefined, {
+      panelClass: 'success-toast',
+      duration: 2000,
+    });
     this.router.navigateByUrl('/preview');
   }
 

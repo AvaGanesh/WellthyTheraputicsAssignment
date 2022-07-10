@@ -5,7 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './wellthy-preview.component.html',
   styleUrls: ['./wellthy-preview.component.scss'],
 })
-export class WellthyPreviewComponent  {
+export class WellthyPreviewComponent {
   constructor() {}
-
 }

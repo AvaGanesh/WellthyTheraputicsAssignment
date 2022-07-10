@@ -14,9 +14,17 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { WellthyPreviewComponent } from './components/wellthy-preview/wellthy-preview.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NumberOnlyDirective } from './directive/number-only.directive';
 @NgModule({
-  declarations: [AppComponent, HomeComponent, WellthyPreviewComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    WellthyPreviewComponent,
+    NumberOnlyDirective,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -28,6 +36,8 @@ import { WellthyPreviewComponent } from './components/wellthy-preview/wellthy-pr
     MatFormFieldModule,
     MatButtonModule,
     MatIconModule,
+    MatSnackBarModule,
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,12 +1,21 @@
 <div
   class="container"
-  fxLayout="row"
+  fxLayout="column"
   fxLayout.xs="column"
   fxFlexFill
   fxLayoutAlign="center center"
 >
   <mat-card>
-    <form [formGroup]="mailerForm" (ngSubmit)="onSubmit()">
+    <img
+      loading="lazy"
+      src="https://wellthytherapeutics.com/wp-content/uploads/2020/07/brand-logo.png"
+      alt="Logo"
+    />
+    <form
+      [formGroup]="mailerForm"
+      (ngSubmit)="onSubmit()"
+      style="margin-top: 20px"
+    >
       <mat-form-field class="example-full-width" appearance="outline">
         <mat-label>User name *</mat-label>
         <input
@@ -15,11 +24,14 @@
           formControlName="userName"
           placeholder="test_32221"
         />
+        <mat-icon matSuffix>
+          <fa-icon [icon]="faUser" [size]="'sm'"></fa-icon>
+        </mat-icon>
         <mat-hint>
           User name should be minimum 6 and can contain only _ and alpha numeric
           characters.
         </mat-hint>
-        <mat-icon matSuffix>person</mat-icon>
+
         <mat-error *ngIf="getUserNameError()">
           {{ getUserNameError() }}
         </mat-error>
@@ -33,10 +45,13 @@
         <input
           type="text"
           matInput
+          appNumberOnly
           formControlName="mobileNumber"
           placeholder="987xxxx987"
         />
-        <mat-icon matSuffix>smartphone</mat-icon>
+        <mat-icon matSuffix>
+          <fa-icon [icon]="faMobile" [size]="'sm'"></fa-icon>
+        </mat-icon>
         <mat-error *ngIf="getMobileNumberError()">
           {{ getMobileNumberError() }}
         </mat-error>
@@ -51,10 +66,18 @@
           [disabled]="mailerForm.invalid"
           (click)="onSubmit()"
         >
-          Send
+          Get Link
         </a>
       </div>
     </form>
   </mat-card>
+  <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="20px">
+    <h4 style="font-weight: 500">
+      Download & install the app for more details
+    </h4>
+    <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px">
+      <fa-icon [icon]="faGooglePlay" [size]="'2x'"></fa-icon>
+      <fa-icon [icon]="faAppStore" [size]="'2x'"></fa-icon>
+    </div>
+  </div>
 </div>
-
